@@ -9,11 +9,37 @@ const initDatabase = async () => {
     console.log('✅ Database connection established successfully')
 
     console.log('🔄 Creating database tables...')
-    // Disable foreign key checks temporarily to avoid constraint errors
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
-    await sequelize.sync({ force: true })
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
-    console.log('✅ Database tables created successfully')
+    try {
+      // Drop all tables manually to avoid foreign key issues
+      await sequelize.query('SET FOREIGN_KEY_CHECKS = 0')
+
+      // Drop tables in correct order to avoid foreign key constraints
+      const tables = [
+        'chat_history',
+        'exam_schedules',
+        'cutoff_data',
+        'admissions',
+        'courses',
+        'colleges',
+        'users',
+        'admins'
+      ]
+
+      for (const table of tables) {
+        try {
+          await sequelize.query(`DROP TABLE IF EXISTS ${table}`)
+        } catch (error) {
+          console.log(`Table ${table} doesn't exist or already dropped`)
+        }
+      }
+
+      await sequelize.sync({ force: true })
+      await sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+      console.log('✅ Database tables created successfully')
+    } catch (error) {
+      await sequelize.query('SET FOREIGN_KEY_CHECKS = 1')
+      throw error
+    }
 
     console.log('🔄 Creating indexes for better performance...')
 
