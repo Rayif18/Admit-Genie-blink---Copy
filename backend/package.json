@@ -6,7 +6,15 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "lint": "eslint \"**/*.js\" --ignore-path ../.gitignore"
+    "lint": "eslint \"**/*.js\" --ignore-path ../.gitignore",
+    "lint:fix": "eslint \"**/*.js\" --ignore-path ../.gitignore --fix",
+    "init-db": "node scripts/initDatabase.js",
+    "seed-all": "node scripts/seedAll.js",
+    "seed-colleges": "node scripts/seedColleges.js",
+    "seed-cutoffs": "node scripts/seedCutoffs.js",
+    "seed-exams": "node scripts/seedExams.js",
+    "download-data": "node scripts/downloadData.js",
+    "setup": "npm run init-db && npm run seed-all"
   },
   "keywords": [
     "express",
