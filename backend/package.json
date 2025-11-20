@@ -1,0 +1,37 @@
+{
+  "name": "admit-genie-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Admit Genie – AI-Powered Admission Assistant Chatbot",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "lint": "eslint \"**/*.js\" --ignore-path ../.gitignore"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "admissions",
+    "chatbot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.36.0",
+    "nodemon": "^3.1.9"
+  }
+}
+
